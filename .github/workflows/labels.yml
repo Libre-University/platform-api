@@ -1,0 +1,35 @@
+name: Etiketleri senkronize et
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/labels.yml
+      - .github/workflows/labels.yml
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Etiketleri oluştur / güncelle
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          file=.github/labels.yml
+          count=$(yq 'length' "$file")
+          for i in $(seq 0 $((count - 1))); do
+            name=$(yq -r ".[$i].name" "$file")
+            color=$(yq -r ".[$i].color" "$file")
+            desc=$(yq -r ".[$i].description" "$file")
+            gh label create "$name" --color "$color" --description "$desc" --force --repo "$GITHUB_REPOSITORY"
+          done
+          # Ortak setle çakışan GitHub varsayılanlarını kaldır
+          for old in bug enhancement documentation; do
+            gh label delete "$old" --yes --repo "$GITHUB_REPOSITORY" || true
+          done

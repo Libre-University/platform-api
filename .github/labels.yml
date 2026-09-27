@@ -1,0 +1,55 @@
+# LibreUniversity ortak etiket seti. Tüm repolarda aynıdır; kaynağı:
+# https://github.com/Libre-University/docs/blob/main/org-labels.yml
+# Değişiklik main'e girince "Etiketleri senkronize et" iş akışı etiketleri günceller.
+
+# Katkıcı yönlendirme
+- { name: "good first issue", color: "7057ff", description: "Yeni katkıcılar için uygun, kapsamı net iş" }
+- { name: "help wanted", color: "008672", description: "Topluluk katkısı bekleniyor" }
+
+# Tür
+- { name: "type:feature", color: "a2eeef", description: "Yeni özellik veya yetenek" }
+- { name: "type:bug", color: "d73a4a", description: "Beklenmeyen veya hatalı davranış" }
+- { name: "type:docs", color: "0075ca", description: "Dokümantasyon işi" }
+- { name: "type:chore", color: "cfd3d7", description: "Altyapı, yapılandırma, bakım" }
+- { name: "type:test", color: "bfd4f2", description: "Test yazma veya test altyapısı" }
+- { name: "type:discussion", color: "d4c5f9", description: "Karar öncesi tartışma, ADR adayı" }
+
+# Alan (katman)
+- { name: "area:backend", color: "1d76db", description: "platform-api / Django" }
+- { name: "area:frontend", color: "5319e7", description: "platform-web / React" }
+- { name: "area:mobile", color: "0e8a16", description: "React Native mobil uygulama" }
+- { name: "area:design-system", color: "f9d0c4", description: "Tasarım ilkeleri, tokenlar, UI bileşenleri" }
+- { name: "area:integration", color: "c2e0c6", description: "Dış sistem adapterleri" }
+- { name: "area:devops", color: "006b75", description: "Kurulum, Compose, Ansible, Helm, gözlemlenebilirlik" }
+- { name: "area:ci", color: "ededed", description: "CI iş akışları ve otomasyon" }
+- { name: "area:docs", color: "0052cc", description: "Belgeler ve ADR'ler" }
+- { name: "area:security", color: "b60205", description: "Güvenlik, yetkilendirme, zafiyet" }
+- { name: "area:accessibility", color: "fbca04", description: "Erişilebilirlik (WCAG 2.1 AA)" }
+- { name: "area:i18n", color: "bfdadc", description: "Çok dillilik ve çeviri" }
+- { name: "area:website", color: "c5def5", description: "Tanıtım sitesi" }
+
+# Modül (platform-api modülleri)
+- { name: "module:identity", color: "fef2c0", description: "Kullanıcı, rol, izin, OIDC" }
+- { name: "module:academic", color: "fef2c0", description: "Birim, program, dönem, ders" }
+- { name: "module:obs", color: "fef2c0", description: "Öğrenci bilgi sistemi" }
+- { name: "module:lms", color: "fef2c0", description: "Öğrenme yönetimi, canlı ders" }
+- { name: "module:audit", color: "fef2c0", description: "Denetim kaydı" }
+- { name: "module:notifications", color: "fef2c0", description: "Bildirimler" }
+- { name: "module:files", color: "fef2c0", description: "Dosya ve medya" }
+
+# Faz (ana yol haritası)
+- { name: "phase:0", color: "0b3d91", description: "Faz 0: Topluluk ve iskelet (davet öncesi)" }
+- { name: "phase:1", color: "1f5fbf", description: "Faz 1: Çekirdek platform" }
+- { name: "phase:2", color: "4f86d9", description: "Faz 2: Akademik iş akışları" }
+- { name: "phase:3", color: "8ab1eb", description: "Faz 3: LMS ve mobil self-servis" }
+- { name: "phase:4", color: "c3d8f7", description: "Faz 4+: Kurumsal süreçler" }
+
+# Öncelik ve durum
+- { name: "priority:high", color: "e11d21", description: "Yüksek öncelik" }
+- { name: "priority:medium", color: "eb6420", description: "Orta öncelik" }
+- { name: "priority:low", color: "c2e0c6", description: "Düşük öncelik" }
+- { name: "status:blocked", color: "000000", description: "Başka bir işe veya karara bağlı" }
+- { name: "status:needs-discussion", color: "d876e3", description: "Başlamadan önce tartışma gerekli" }
+
+# Özel
+- { name: "kvkk", color: "e99695", description: "Kişisel veri / KVKK etkisi var" }
