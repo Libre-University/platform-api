@@ -46,4 +46,4 @@ Katkı rehberi, davranış kuralları ve güvenlik politikası organizasyon gene
 
 ## Lisans
 
-Lisans kararı [ADR-0002](https://github.com/Libre-University/docs/blob/main/docs/adr/0002-prefer-agpl-3-or-later-license.md) ile kesinleştirilecektir (öneri: AGPL-3.0-or-later).
+Bu proje [GNU Affero Genel Kamu Lisansı v3.0 veya sonrası](LICENSE) (AGPL-3.0-or-later) ile lisanslanmıştır. Ağ üzerinden hizmet olarak sunulan değiştirilmiş sürümlerin kaynak kodu da kullanıcılarla paylaşılmalıdır ([ADR-0002](https://github.com/Libre-University/docs/blob/main/docs/adr/0002-prefer-agpl-3-or-later-license.md)).
