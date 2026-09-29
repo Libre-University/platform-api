@@ -72,7 +72,7 @@ jobs:
       - uses: actions/setup-go@v6
         with:
           go-version-file: go.work
-      - name: migrate (iki kez: ikinci çalıştırma boş olmalı)
+      - name: "migrate (iki kez; ikinci çalıştırma boş olmalı)"
         env:
           LU_DATABASE_URL: postgres://libre:libre@localhost:5432/libre?sslmode=disable
         run: |
