@@ -1,0 +1,80 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Derle, test et, lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: go.work
+          cache-dependency-path: |
+            core/go.sum
+            platform/go.sum
+            modules/obs/go.sum
+            modules/lms/go.sum
+            cmd/libre-university/go.sum
+
+      - name: go mod tidy temiz mi
+        run: |
+          make tidy
+          git diff --exit-code -- '**/go.mod' '**/go.sum' || { echo "go mod tidy sonrası fark var; make tidy çalıştırıp commit edin"; exit 1; }
+
+      - name: gofmt
+        run: make fmt
+
+      - name: go vet
+        run: make vet
+
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v8
+        with:
+          version: latest
+          args: ./core/... ./platform/... ./modules/obs/... ./modules/lms/... ./cmd/libre-university/...
+
+      - name: go test -race
+        run: make test
+
+      - name: go build
+        run: make build
+
+      - name: Modül listesi
+        run: ./bin/libre-university modules
+
+  migrate:
+    name: Migration'lar PostgreSQL üzerinde çalışıyor mu
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: libre
+          POSTGRES_PASSWORD: libre
+          POSTGRES_DB: libre
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U libre"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: go.work
+      - name: migrate (iki kez: ikinci çalıştırma boş olmalı)
+        env:
+          LU_DATABASE_URL: postgres://libre:libre@localhost:5432/libre?sslmode=disable
+        run: |
+          go run ./cmd/libre-university migrate
+          go run ./cmd/libre-university migrate

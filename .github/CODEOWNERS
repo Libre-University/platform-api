@@ -1,3 +1,7 @@
 # Bu dosyadaki kişilere, ilgili dosyaları değiştiren PR'lar için otomatik inceleme isteği gider.
-# Katkıcılar arttıkça alanlara göre sahipler eklenmelidir (ör. /docs/adr/ @Libre-University/maintainers).
-* @4ykutG
+# Sahiplik dizin bazlıdır (ADR-0012); modül ekibi oluştukça ilgili satır güncellenir.
+*                 @4ykutG
+/core/            @4ykutG
+/platform/        @4ykutG
+/modules/obs/     @4ykutG
+/modules/lms/     @4ykutG
