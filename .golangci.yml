@@ -1,0 +1,42 @@
+version: "2"
+
+linters:
+  default: standard
+  enable:
+    - depguard
+    - errorlint
+    - gocritic
+    - misspell
+    - revive
+    - unconvert
+  settings:
+    depguard:
+      rules:
+        # Modüller çekirdeğe yalnızca core üzerinden erişir (ADR-0012).
+        modules-only-core:
+          files:
+            - "**/modules/**"
+          deny:
+            - pkg: github.com/Libre-University/platform-api/platform
+              desc: "modüller platform paketini içe aktaramaz; core kullanın (ADR-0012)"
+        # Çekirdek hiçbir modülü tanımaz; modüller cmd/ içinde bir araya gelir.
+        platform-no-modules:
+          files:
+            - "**/platform/**"
+            - "**/core/**"
+          deny:
+            - pkg: github.com/Libre-University/platform-api/modules
+              desc: "çekirdek modülleri içe aktaramaz; modüller cmd/ içinde birleştirilir (ADR-0012)"
+    revive:
+      rules:
+        - name: exported
+          disabled: true
+
+formatters:
+  enable:
+    - gofmt
+    - goimports
+  settings:
+    goimports:
+      local-prefixes:
+        - github.com/Libre-University
